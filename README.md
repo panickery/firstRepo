@@ -1,7 +1,7 @@
-# firstRepo
-firstRepo. i don't know what will be contained
+# FirstRepo
+FirstRepo. I don't know what will be contained
 
 
-# actually
-i don't know i'm good at <b>this</b> and enjoy <b>this</b>
-<BR>but I will try step by step
+# Actually
+I don't know I'm good at <b>this</b> and enjoy <b>this</b>
+<BR>But I will try step by step
