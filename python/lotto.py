@@ -3,6 +3,8 @@ import random
 import sys
 
 ## Lotto 확률 분석 및 테스트
+#생각해보니 1등과 2등은 보너스 번호가 있는데 안넣었다.
+#빠가사리! 수정 필요
 
 def get_number() :
     answer = set()
@@ -24,6 +26,7 @@ def compare_lotto(answer, lotto) :
     return results
 
 if __name__ == '__main__' : 
+    # give argument count as bought lotto
     parser = argparse.ArgumentParser(description='Predict your prize.')
     parser.add_argument('count', help="How many you buy lotto")
     args = parser.parse_args()
@@ -57,9 +60,5 @@ if __name__ == '__main__' :
     
     print("you earned {}won".format(result_money))
     
-    for cnt in range(2, 7) :
+    for cnt in range(0, 7) :
         print("{} correct :: {}".format(cnt, scores.count(cnt))) 
-        
-
-
-
