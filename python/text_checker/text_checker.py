@@ -20,7 +20,7 @@ def doVerticalSum() :
 
     for i in txt_arr :
         try :
-            num_arr.append(int(i))        
+            num_arr.append(float(i))        
         except Exception as e:
             print(e)
             continue
