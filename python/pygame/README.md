@@ -1,23 +1,23 @@
-#firstgame
+# Firstgame
  - move block with W A S D
  
-#secondgame
+# Secondgame
  - Not My Code 
  - change background color
  
-# thirdgame
+# Thirdgame
  - spreading circle random position
  
-# fourthgame
+# Fourthgame
  - seven circle start spreading and random position, time spread
  
-# fifthgame
+# Fifthgame
  - full array sort
  - name : no name terrible sort
  - compare count : n-1 + n-1 + n-1 .....+ n-1 = n^2-n
  - Time Complexity : O(n^2)
  
-# sixthgame
+# Sixthgame
  - bubble sort with black background color and white bar
  - name : bubble sort
  - compare count : n-1 + n-2 + n-3 +.... + 1 = n(n-1)/2
