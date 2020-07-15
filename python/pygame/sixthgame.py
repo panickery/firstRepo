@@ -1,9 +1,10 @@
 import pygame
 import random
+import time
 
 # bubble Sort
 
-arr_cnt = 50
+arr_cnt = 300
 screen_width = arr_cnt * 4
 screen_height = 300
 
@@ -14,7 +15,7 @@ BLUE  = (  0,   0, 255)
 BLACK = ( 0,0,0)
 PURPLE = (255, 0, 255)
 WHITE = (255, 255, 255)
-
+font = None
 run = True
 
 def sort(arr) : 
@@ -65,12 +66,14 @@ def runGame() :
         screen.fill(pygame.color.Color(0, gb[0], gb[1]))
         arr = sortSelected(arr, selected)
         drawArr(arr, selected)
+        text = font.render(str(count), True, WHITE)
+        screen.blit(text, (10, 10))
         pygame.display.flip()
         clock.tick(500)
         selected += 1
         selected %= len(arr) - stage - 1
         count += 1
-        count %= (arr_cnt-1)*(arr_cnt-1 - stage)
+        count %= (arr_cnt-1)*(arr_cnt-1)
 
         if selected == 0 :
             stage += 1
@@ -80,4 +83,11 @@ def runGame() :
 if __name__ == '__main__' :
     pygame.init() 
     pygame.display.set_caption("Hello, pygame!")
+
+    sysfont = pygame.font.get_default_font()
+    print('system font :', sysfont)
+
+    t0 = time.time()
+    font = pygame.font.SysFont(None, 48)
+    print('time needed for Font creation :', time.time()-t0)
     runGame()
