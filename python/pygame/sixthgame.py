@@ -4,7 +4,7 @@ import time
 
 # bubble Sort
 
-arr_cnt = 300
+arr_cnt = 50
 screen_width = arr_cnt * 4
 screen_height = 300
 
