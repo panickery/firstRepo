@@ -23,3 +23,8 @@
  - compare count : n-1 + n-2 + n-3 +.... + 1 = n(n-1)/2
  - Time Complexity : O(n^2)
  
+# Seventhgame
+ - selection sort with black backgound color and white bar
+ - name : selection sort
+ - compare count : n-1 + n-2 + n-3 +... + 1 = n(n-1)/2
+ - Time Complexity : O(n^2)
