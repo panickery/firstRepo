@@ -5,7 +5,7 @@ import random
 # 한번 만들어 보고 싶었는데 능력 부족이었음
 # 시도
 
-arr_cnt = 100
+arr_cnt = 50
 screen_width = arr_cnt * 4
 screen_height = 300
 

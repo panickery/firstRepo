@@ -11,10 +11,10 @@ screen_height = 300
 screen = pygame.display.set_mode((screen_width, screen_height)) 
 clock = pygame.time.Clock()
 gb = [0, 0]
-BLUE  = (  0,   0, 255)
-BLACK = ( 0,0,0)
-PURPLE = (255, 0, 255)
-WHITE = (255, 255, 255)
+BLUE  =  (  0,   0, 255)
+BLACK  = (  0,   0,   0)
+PURPLE = (255,   0, 255)
+WHITE  = (255, 255, 255)
 font = None
 run = True
 
@@ -37,23 +37,37 @@ def drawArr(arr, selected) :
         else :
             pygame.draw.rect(screen, WHITE, pos, 2)
 
-# def sortSelected(arr, selected) :
-#     if arr[selected] > arr[selected + 1] :
-#         temp = arr[selected + 1]
-#         arr[selected + 1] = arr[selected]
-#         arr[selected] = temp
-#     return arr
-
+# 한번 부를때마다 다음 단계를 return 해야한다.
 def sortSelected(arr, i, j, least) :
+    if j == len(arr) :
+        if i != least :
+            temp = arr[i]
+            arr[i] = arr[least]
+            arr[least] = temp
+        i += 1
+        j = i
+        least = i
+        # i is in End. it has to be reset
+        if i == len(arr) - 1 : 
+            return False, arr, i, j, least
+        return True, arr, i, j, least
 
-    return arr, i, j, least
+    if arr[least] > arr[j] :
+        least = j
 
-def basicScreen() : 
-    screen.fill(pygame.color.Color(0, gb[0], gb[1]))
-    # text = font.render(str(count), True, WHITE)
-    # screen.blit(text, (10, 10))
+    return True, arr, i, j+1, least
+
+def basicScreen(count) : 
+    text = font.render(str(count), True, WHITE)
+    screen.blit(text, (10, 10))
     pygame.display.flip()
     clock.tick(500)
+
+def resetArray() :
+    arr = []
+    for i in range(0, arr_cnt) :
+        arr.append(random.randint(0, screen_height))
+    return arr
 
 def runGame() :
     global run, gb
@@ -61,33 +75,27 @@ def runGame() :
     arr = []
     selected = 0
     count = 0
-    stage = 0
-
-    arr.append(random.randint(0, screen_height))
+    notEnd = False
+    i, j, least = 0,0,0
 
     while run:
-        print("good2")
-        
-        for i in range(0, len(arr)-1) :
-            print(i)
-            least = i
-            for j in range(i+1, len(arr)) :
-                if arr[least] > arr[j] :
-                    least = j
-                drawArr(arr, j)
-                basicScreen()
-                print("good")
-
-            if i != least :
-                temp = arr[j]
-                arr[j] = arr[i]
-                arr[i] = temp
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
 
-        
+        if not notEnd :
+            arr = resetArray()
+            i = 0
+            j = i+1
+            least = i
+            count = 0
+
+        screen.fill(pygame.color.Color(0, gb[0], gb[1]))
+        drawArr(arr, j)
+        basicScreen(count)
+
+        notEnd, arr, i, j, least = sortSelected(arr, i, j, least)
+        count+=1
 
     pygame.quit()
 
