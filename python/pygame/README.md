@@ -28,3 +28,9 @@
  - name : selection sort
  - compare count : n-1 + n-2 + n-3 +... + 1 = n(n-1)/2
  - Time Complexity : O(n^2)
+
+# Eighthgame
+ - insertion sort with black background color and white bar
+ - name : insertion sort
+ - compare count : 1 + 2 + 3 + 4 .... n - 1 = n(n-1)/2
+ - Time Complexity : O(n^2)
