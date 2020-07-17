@@ -3,7 +3,6 @@ import random
 import time
 
 # Insertion sort
-# -> No reverse bubble sort
 
 arr_cnt = 50
 screen_width = arr_cnt * 4
@@ -19,26 +18,59 @@ WHITE  = (255, 255, 255)
 font = None
 run = True
 
-# Insertion sort
-def sort(arr) : 
+arr_stage = []
+
+# Insertion sort 인줄 알았던
+def oldSort(arr) : 
     for i in range(1, len(arr)):
         for j in range(i, 0, -1):
             if arr[j - 1] > arr[j]:
                 arr[j - 1], arr[j] = arr[j], arr[j - 1]
 
+def sort(arr) :
+    for i in range(1, len(arr)) :
+        j = i - 1
+        key = arr[i]
+        # while arr[j] > key and j >= 0 :
+        #     arr[j+1] = arr[j]
+        #     j = j - 1
+
+        for j in range(i-1, -1, -1) :
+            if arr[j] > key :
+                arr[j + 1] = arr[j]
+        arr[j+1] = key
+
+
 # 한번 부를때마다 다음 단계를 return 해야한다.
-def sortSelected(arr, i, j) :
-    if j == 0 :
+def sortSelected(arr, i, j, key) :
+    # i = 1
+    # j = 0
+    # key = arr[i]
+
+    # if i > len(arr)-1 :
+    #     return False, arr, i, j, key
+
+    if j <= 0 : 
+        if i > len(arr) - 1 :
+            return False, arr, i, j, key
         i += 1
-        j = i
-    
-    if i == len(arr) - 1 : 
-        return False, arr, i, j
+        print(i)
+        j = i - 1
+        key = arr[i]
+        return True, arr, i, j, key
 
-    if arr[j - 1] > arr[j]:
-        arr[j - 1], arr[j] = arr[j], arr[j - 1]
+    if arr[j] > key :
+        arr[j+1] = arr[j]
+        j -= 1
+        return True, arr, i, j, key
+    else :
+        arr[j+1] = key
+        print(arr[j + 1], key)
+        i += 1
+        j = i - 1
+        key = arr[i]
+        return True, arr, i, j, key
 
-    return True, arr, i, j-1
 
 def drawArr(arr, selected) :
     for cnt in range(0, len(arr)) : 
@@ -78,14 +110,15 @@ def runGame() :
         if not notEnd :
             arr = resetArray()
             i = 1
-            j = i
+            j = i - 1
+            key = arr[i]
             count = 0
 
         screen.fill(pygame.color.Color(0, gb[0], gb[1]))
         drawArr(arr, j)
         basicScreen(count)
 
-        notEnd, arr, i, j = sortSelected(arr, i, j)
+        notEnd, arr, i, j, key = sortSelected(arr, i, j, key)
         count+=1
 
     pygame.quit()
