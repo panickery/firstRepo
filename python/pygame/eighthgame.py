@@ -26,13 +26,23 @@ def sort(arr) :
             if arr[j - 1] > arr[j]:
                 arr[j - 1], arr[j] = arr[j], arr[j - 1]
 
+    # 최적화 소스
+    # for end in range(1, len(arr)):
+    #     to_insert = arr[end]
+    #     i = end
+    #     while i > 0 and arr[i - 1] > to_insert:
+    #         arr[i] = arr[i - 1]
+    #         i -= 1
+    #     arr[i] = to_insert
+
 # 한번 부를때마다 다음 단계를 return 해야한다.
 def sortSelected(arr, i, j) :
     if j == 0 :
         i += 1
         j = i
     
-    if i == len(arr) - 1 : 
+    if i == len(arr) : 
+        pygame.time.wait(1000)
         return False, arr, i, j
 
     if arr[j - 1] > arr[j]:

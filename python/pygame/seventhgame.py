@@ -49,7 +49,8 @@ def sortSelected(arr, i, j, least) :
         j = i
         least = i
         # i is in End. it has to be reset
-        if i == len(arr) - 1 : 
+        if i == len(arr) : 
+            pygame.time.wait(1000)
             return False, arr, i, j, least
         return True, arr, i, j, least
 

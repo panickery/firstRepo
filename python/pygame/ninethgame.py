@@ -2,7 +2,7 @@ import pygame
 import random
 import time
 
-# Insertion sort
+# counting sort
 
 arr_cnt = 50
 screen_width = arr_cnt * 4
@@ -20,57 +20,41 @@ run = True
 
 arr_stage = []
 
-# Insertion sort 인줄 알았던
-def oldSort(arr) : 
-    for i in range(1, len(arr)):
-        for j in range(i, 0, -1):
-            if arr[j - 1] > arr[j]:
-                arr[j - 1], arr[j] = arr[j], arr[j - 1]
-
-def sort(arr) :
-    for i in range(1, len(arr)) :
-        j = i - 1
-        key = arr[i]
-        # while arr[j] > key and j >= 0 :
-        #     arr[j+1] = arr[j]
-        #     j = j - 1
-
-        for j in range(i-1, -1, -1) :
-            if arr[j] > key :
-                arr[j + 1] = arr[j]
-        arr[j+1] = key
-
+def countingsort( aList, k ):
+    counter = [0] * ( k + 1 )
+    for i in aList:
+      counter[i] += 1
+ 
+    ndx = 0
+    for i in range( len( counter ) ):
+      while 0 < counter[i]:
+        aList[ndx] = i
+        ndx += 1
+        counter[i] -= 1
 
 # 한번 부를때마다 다음 단계를 return 해야한다.
-def sortSelected(arr, i, j, key) :
-    # i = 1
-    # j = 0
-    # key = arr[i]
-
-    # if i > len(arr)-1 :
-    #     return False, arr, i, j, key
-
-    if j <= 0 : 
-        if i > len(arr) - 1 :
-            return False, arr, i, j, key
+def sortSelected(arr, i, arrMax, listing, ndx, counter) :
+    if i < len(arr) and listing == 0 :
+        counter[arr[i]] += 1
         i += 1
-        print(i)
-        j = i - 1
-        key = arr[i]
-        return True, arr, i, j, key
+        return True, arr, i, arrMax, listing, ndx, counter
+    elif listing == 0 :
+        i = 0
+        listing = 1
 
-    if arr[j] > key :
-        arr[j+1] = arr[j]
-        j -= 1
-        return True, arr, i, j, key
-    else :
-        arr[j+1] = key
-        print(arr[j + 1], key)
-        i += 1
-        j = i - 1
-        key = arr[i]
-        return True, arr, i, j, key
+    if listing == 1 and i > arrMax : 
+        pygame.time.wait(1000)
+        return False, arr, i, arrMax, listing, ndx, counter
 
+    if listing == 1 :
+        if counter[i] > 0 : 
+            arr[ndx] = i
+            ndx += 1
+            counter[i] -= 1
+        else :
+            i += 1
+    
+    return True, arr, i, arrMax, listing, ndx, counter
 
 def drawArr(arr, selected) :
     for cnt in range(0, len(arr)) : 
@@ -109,16 +93,18 @@ def runGame() :
 
         if not notEnd :
             arr = resetArray()
-            i = 1
-            j = i - 1
-            key = arr[i]
+            arrMax = max(arr)
+            counter = [0] * (max(arr) + 1)
+            i = 0
+            j = 0
+            listing = 0
+            ndx = 0
             count = 0
 
         screen.fill(pygame.color.Color(0, gb[0], gb[1]))
-        drawArr(arr, j)
+        drawArr(arr, i)
         basicScreen(count)
-
-        notEnd, arr, i, j, key = sortSelected(arr, i, j, key)
+        notEnd, arr, i, arrMax, listing, ndx, counter = sortSelected(arr, i, arrMax, listing, ndx, counter)
         count+=1
 
     pygame.quit()
