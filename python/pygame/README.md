@@ -34,3 +34,11 @@
  - name : insertion sort
  - compare count : 1 + 2 + 3 + 4 .... n - 1 = n(n-1)/2
  - Time Complexity : O(n^2)
+ 
+ # Ninethgame
+ - counting sort with black background color and white bar
+ - name : counting sort
+ - compare count : 0
+ - Time Complexity : O(n + k) but. it depends on the max value of the array (k)
+ - Space Complexity : O(k) k = max(arr)
+ 
