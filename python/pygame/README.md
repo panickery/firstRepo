@@ -42,3 +42,11 @@
  - Time Complexity : O(n + k) but. it depends on the max value of the array (k)
  - Space Complexity : O(k) k = max(arr)
  
+ # Tenthgame
+ - quick sort with black background color and white bar
+ - name : quick sort
+ - compare count : ?
+ - Time Complexity : ?
+ - Space Complexity : ?
+ - in this case. too hard to quicksort to step by step format, so i saved every step of quick sort
+   arr, pivot etc(need change if i can)
