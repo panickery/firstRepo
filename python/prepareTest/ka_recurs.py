@@ -1,7 +1,7 @@
 import time
 
 def split(txt) :
-    print("txt :: {}".format(txt))
+    # print("txt :: {}".format(txt))
     num_par = 0
     is_right = 0
     for i in txt :
@@ -12,7 +12,7 @@ def split(txt) :
             is_right -=1
 
         if is_right == 0 :
-            print(txt[0:num_par], txt[num_par:len(txt)])
+            # print(txt[0:num_par], txt[num_par:len(txt)])
             return txt[0:num_par], txt[num_par:len(txt)]
 
 def checkRight(text) :
@@ -38,8 +38,17 @@ def recur(text) :
     else :
         result = '(' + recur(v) + ')'
         temp = u[1:len(u)-1]
-        temp = temp[::-1]
-        return result + temp
+        # 괄호를 제거한 u를 뒤집는게 아니라 괄호 방향을 바꿔야한다.
+        # temp = temp[::-1]
+        temp=list(temp)
+        
+        for i in range(len(temp)) :
+            if temp[i] == '(' :
+                temp[i] = ')'
+            else :
+                temp[i] = '('
+        temp = ''.join(temp)
+        return result+temp
 
 def solution(text):
     result = recur(text)
@@ -49,13 +58,16 @@ a = [
     "(()())()",
     ")(",
     "()))((()",
+    "()",
+    "()()()()",
+    ")()()()("
     ")))(())()))(()(((())(()()))()(((()()()(()()()()())()())()())())))(()())()())(((()())()()()))((())())))()))())(()())(())))))))(((()(()()(((()()(()()(((((()(()()))()))(((()())))(((()(())((((((()))()))(("
 ]
 
-# for x in a:
-#     print(solution(x))
+for x in a:
+    print(solution(x))
 
-print(solution(a[0]))
+# print(solution(a[0]))
 # print(solution(a[1]))
 # print(solution(a[2]))
 
