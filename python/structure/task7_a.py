@@ -1,4 +1,0 @@
-# Animals
-
-class Animal :
-    
