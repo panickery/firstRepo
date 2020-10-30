@@ -59,10 +59,6 @@ if __name__ == '__main__' :
             sys.exit()
         else :
             len_char += len(line)
-            # print(len(line))
-            # print(len(inp_str))
-            # print(line)
-            # print(inp_str)
 
             # 맨뒤에 줄바꿈이 붙어있음
             for i in range(len(line)-1) :
